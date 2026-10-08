@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>網頁提示 | Page Notice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark-outer: #231614;
+            --frame-dark-brown: #38231E;
+            --card-apricot: #FAF0E6;
+            --card-apricot-inner: #F3E5D8;
+            --text-dark-brown: #2C1B18;
+            --text-cocoa: #5C3E35;
+            --accent-terracotta: #8C4A3A;
+            --accent-terracotta-hover: #733B2E;
+            --border-soft: #E6D3C3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark-outer);
+            background-image: radial-gradient(circle at 50% 30%, #3D2722 0%, #201311 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            color: var(--text-dark-brown);
+        }
+
+        /* Outer Frame with Dark Brown Styling */
+        .outer-frame {
+            background-color: var(--frame-dark-brown);
+            border: 1px solid #4D312B;
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            max-width: 860px;
+            width: 100%;
+        }
+
+        /* Inner Apricot Card Container */
+        .inner-card {
+            background-color: var(--card-apricot);
+            border-radius: 18px;
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Left Side: Vector Illustration */
+        .illustration-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 220px;
+        }
+
+        .illustration-side svg {
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            filter: drop-shadow(0 12px 20px rgba(60, 30, 20, 0.12));
+        }
+
+        /* Right Side: Content Area */
+        .content-side {
+            flex: 1.3;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #EBD8C7;
+            color: var(--accent-terracotta);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #DFCAA8;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-terracotta);
+            border-radius: 50%;
+        }
+
+        .main-title-zh {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark-brown);
+            line-height: 1.4;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+
+        .sub-title-en {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-cocoa);
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        /* Action Buttons */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 26px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-terracotta);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-terracotta);
+            box-shadow: 0 4px 14px rgba(140, 74, 58, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-terracotta-hover);
+            border-color: var(--accent-terracotta-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(140, 74, 58, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark-brown);
+            border: 1.5px solid var(--border-soft);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(92, 62, 53, 0.06);
+            border-color: var(--text-cocoa);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 720px) {
+            .outer-frame {
+                padding: 10px;
+                border-radius: 20px;
+            }
+
+            .inner-card {
+                flex-direction: column;
+                padding: 36px 24px;
+                text-align: center;
+                gap: 28px;
+                border-radius: 14px;
+            }
+
+            .content-side {
+                align-items: center;
+            }
+
+            .main-title-zh {
+                font-size: 1.5rem;
+            }
+
+            .sub-title-en {
+                font-size: 0.95rem;
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+
+            .illustration-side svg {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-frame">
+        <div class="inner-card">
+            
+            <!-- Left Side: Warm Apricot & Dark Brown Vector Illustration -->
+            <div class="illustration-side">
+                <svg viewBox="0 0 220 220" fill="none" xmlns="images.png">
+                    <!-- Base Apricot Badge Shield -->
+                    <rect x="10" y="10" width="200" height="200" rx="40" fill="#F3E5D8"/>
+                    
+                    <!-- Laptop Body -->
+                    <rect x="45" y="75" width="130" height="85" rx="10" fill="#38231E"/>
+                    <rect x="52" y="82" width="116" height="71" rx="6" fill="#FAF0E6"/>
+                    <path d="M35 168C35 163.582 38.5817 160 43 160H177C181.418 160 185 163.582 185 168V170H35V168Z" fill="#38231E"/>
+                    <rect x="95" y="161" width="30" height="4" rx="2" fill="#8C4A3A"/>
+                    
+                    <!-- Code / Gear Icon on Screen -->
+                    <circle cx="110" cy="115" r="22" fill="#EBD8C7"/>
+                    <path d="M102 110L96 115L102 120" stroke="#8C4A3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M118 110L124 115L118 120" stroke="#8C4A3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M112 107L108 123" stroke="#5C3E35" stroke-width="2.5" stroke-linecap="round"/>
+                    
+                    <!-- Decorative Floating Elements (Coffee Cup & Sparkles) -->
+                    <!-- Coffee Cup -->
+                    <rect x="155" y="132" width="16" height="20" rx="3" fill="#8C4A3A"/>
+                    <path d="M171 137C173 137 174.5 138.5 174.5 140.5C174.5 142.5 173 144 171 144" stroke="#8C4A3A" stroke-width="2"/>
+                    <!-- Steam -->
+                    <path d="M160 126C160 124 162 124 162 122" stroke="#A86252" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M165 127C165 125 167 125 167 123" stroke="#A86252" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <!-- Star Sparkles -->
+                    <path d="M55 52L57 58L63 60L57 62L55 68L53 62L47 60L53 58L55 52Z" fill="#8C4A3A"/>
+                    <circle cx="172" cy="50" r="4" fill="#D49A89"/>
+                    <circle cx="42" cy="130" r="3" fill="#8C4A3A"/>
+                </svg>
+            </div>
+
+            <!-- Right Side: Dual Language Content -->
+            <div class="content-side">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    <span>系統提示 &bull; Notice</span>
+                </div>
+                
+                <h1 class="main-title-zh">網頁有點小問題，<br>繼續練習一下再試試！</h1>
+                <p class="sub-title-en">Oops! The webpage isn't working right now. <br>Keep practicing and try again later!</p>
+                
+                <div class="button-group">
+                    <a href="#" class="btn btn-primary" onclick="return www.steveweiss.com;">繼續練習 / Try Again</a>
+                    <a href="#" class="btn btn-secondary" onclick="return www.steveweiss.com;">返回首頁 / Home</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
